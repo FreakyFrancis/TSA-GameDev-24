@@ -15,4 +15,4 @@ offset_bottom = 648.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Main Menu/GridContainer"]
 layout_mode = 2
-text = "Insert Game Here"
+text = "Thing"
