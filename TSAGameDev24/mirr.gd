@@ -5,7 +5,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var DASH_ENABLED = true
 var CAN_DASH = true
-var Player = "P1"
+var Player = "P2"
 var DASH_TIME = 25;
 
 
@@ -44,8 +44,8 @@ func _input(event):
 			velocity = velocity*DASH_TIME;
 			move_and_slide()
 	if event.is_action_pressed(Player+"_Special"):
-		var tal = load("res://talisman.tscn")
-		print("talisman added")
+		var tal = load("res://mirror.tscn")
+		print("mirror added")
 		add_sibling(tal.instantiate())
 		print(position)
 

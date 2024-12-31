@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsyk26131yma"]
+[gd_scene load_steps=4 format=3 uid="uid://baldhw7mmjrpd"]
 
-[ext_resource type="Texture2D" uid="uid://cubf5pm56xbln" path="res://test_body.png" id="1_ew63j"]
-[ext_resource type="Script" path="res://tali.gd" id="1_vvskl"]
+[ext_resource type="Script" path="res://mirr.gd" id="1_w0bvx"]
+[ext_resource type="Texture2D" uid="uid://cubf5pm56xbln" path="res://test_body.png" id="2_33klp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ljidr"]
 
-[node name="Tali" type="CharacterBody2D"]
-script = ExtResource("1_vvskl")
+[node name="Mirr" type="CharacterBody2D"]
+script = ExtResource("1_w0bvx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -23)
-texture = ExtResource("1_ew63j")
+texture = ExtResource("2_33klp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ljidr")
