@@ -6,7 +6,7 @@ func _ready():
 	#move_to_front()
 	#print(get_parent())
 	position = get_parent().get_child(1).position
-	print(position)
+	#print(position)
 	$AnimatedSprite2D.play("Startup")
 	pass # Replace with function body.
 

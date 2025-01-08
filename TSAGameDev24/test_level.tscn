@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://bvimfgd4q6xvn"]
+[gd_scene load_steps=7 format=4 uid="uid://bvimfgd4q6xvn"]
 
 [ext_resource type="Texture2D" uid="uid://brqb1o6rueblm" path="res://New Piskel-2.png.png" id="1_dg46a"]
 [ext_resource type="PackedScene" uid="uid://bsyk26131yma" path="res://tali.tscn" id="2_h516y"]
 [ext_resource type="PackedScene" uid="uid://baldhw7mmjrpd" path="res://Mirr.tscn" id="2_hp6p1"]
 [ext_resource type="PackedScene" uid="uid://dcew24g2tu4gs" path="res://mirror.tscn" id="3_10v1w"]
-[ext_resource type="PackedScene" uid="uid://brf4fyyq8o6v8" path="res://talisman.tscn" id="3_44pm4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3nfm4"]
 texture = ExtResource("1_dg46a")
@@ -30,6 +29,3 @@ position = Vector2(829, 383)
 
 [node name="Tali" parent="." instance=ExtResource("2_h516y")]
 position = Vector2(380, 204)
-
-[node name="Talisman" parent="." instance=ExtResource("3_44pm4")]
-position = Vector2(227, 146)
