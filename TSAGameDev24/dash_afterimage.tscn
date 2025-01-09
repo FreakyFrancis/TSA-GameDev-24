@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://djp5ng62jhxmr"]
 
 [ext_resource type="Script" path="res://dash_afterimage.gd" id="1_yvl3j"]
-[ext_resource type="Texture2D" uid="uid://cubf5pm56xbln" path="res://test_body.png" id="2_cdble"]
+[ext_resource type="Texture2D" uid="uid://bskwg1v7b553l" path="res://test_ghost.png" id="2_yq2wn"]
 
 [node name="Dash_afterimage" type="Node2D"]
 script = ExtResource("1_yvl3j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -24)
-texture = ExtResource("2_cdble")
+texture = ExtResource("2_yq2wn")

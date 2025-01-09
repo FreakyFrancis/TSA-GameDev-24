@@ -75,8 +75,9 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_18kv2"]
+radius = 23.0217
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="Spirit" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_v86pc")
 
@@ -86,5 +87,10 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_oxya7")
 frame_progress = 0.251198
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_18kv2")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
