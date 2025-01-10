@@ -26,5 +26,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body):
+	if "Player" in body:
+		get_parent().counter += 1
 	
 	pass # Replace with function body.

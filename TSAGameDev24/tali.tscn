@@ -1,17 +1,111 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsyk26131yma"]
+[gd_scene load_steps=18 format=3 uid="uid://bsyk26131yma"]
 
-[ext_resource type="Texture2D" uid="uid://cubf5pm56xbln" path="res://test_body.png" id="1_ew63j"]
 [ext_resource type="Script" path="res://tali.gd" id="1_vvskl"]
+[ext_resource type="Texture2D" uid="uid://b34kelldu2mj8" path="res://Crow_idle.png" id="2_binms"]
+[ext_resource type="Texture2D" uid="uid://0oceqa4q2eih" path="res://Crow walk.png" id="3_g7pl7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ljidr"]
+radius = 11.0454
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6r8b"]
+atlas = ExtResource("2_binms")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmh4t"]
+atlas = ExtResource("2_binms")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uds11"]
+atlas = ExtResource("2_binms")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3vwy"]
+atlas = ExtResource("2_binms")
+region = Rect2(144, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_372oa"]
+atlas = ExtResource("2_binms")
+region = Rect2(192, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5jha"]
+atlas = ExtResource("3_g7pl7")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fnpw"]
+atlas = ExtResource("3_g7pl7")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqoyi"]
+atlas = ExtResource("3_g7pl7")
+region = Rect2(96, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15cj3"]
+atlas = ExtResource("3_g7pl7")
+region = Rect2(144, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da5qk"]
+atlas = ExtResource("3_g7pl7")
+region = Rect2(192, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mcmg"]
+atlas = ExtResource("3_g7pl7")
+region = Rect2(240, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05orp"]
+atlas = ExtResource("3_g7pl7")
+region = Rect2(288, 0, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i878q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6r8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmh4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uds11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3vwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_372oa")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5jha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fnpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqoyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15cj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da5qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mcmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05orp")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
 
 [node name="Tali" type="CharacterBody2D"]
 script = ExtResource("1_vvskl")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(0, -23)
-texture = ExtResource("1_ew63j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ljidr")
@@ -25,6 +119,13 @@ one_shot = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 position = Vector2(0, -27)
 polygon = PackedVector2Array(0, 27)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -32)
+sprite_frames = SubResource("SpriteFrames_i878q")
+animation = &"Idle"
+frame_progress = 0.93157
 
 [connection signal="timeout" from="Dash_Cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
