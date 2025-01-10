@@ -1,9 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://baldhw7mmjrpd"]
+[gd_scene load_steps=9 format=3 uid="uid://baldhw7mmjrpd"]
 
 [ext_resource type="Script" path="res://mirr.gd" id="1_w0bvx"]
 [ext_resource type="Texture2D" uid="uid://cubf5pm56xbln" path="res://test_body.png" id="2_33klp"]
+[ext_resource type="Texture2D" uid="uid://bcpaydf0wtqp3" path="res://Bubble.png" id="3_0c6h7"]
+[ext_resource type="Texture2D" uid="uid://bjgsgqvxoklgp" path="res://output-onlinepngtools.png" id="4_nsl32"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ljidr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fsrw"]
+atlas = ExtResource("3_0c6h7")
+region = Rect2(0, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f57vc"]
+atlas = ExtResource("4_nsl32")
+region = Rect2(144, 0, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbatg"]
+atlas = ExtResource("3_0c6h7")
+region = Rect2(72, 0, 72, 72)
 
 [node name="Mirr" type="CharacterBody2D"]
 script = ExtResource("1_w0bvx")
@@ -16,8 +30,21 @@ texture = ExtResource("2_33klp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ljidr")
 
-[node name="Dash_Cooldown" type="Timer" parent="."]
-wait_time = 0.3
+[node name="Bubble_Cooldown" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
 
-[connection signal="timeout" from="Dash_Cooldown" to="." method="_on_dash_cooldown_timeout"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = -36.0
+offset_top = -63.0
+offset_right = 37.0
+offset_bottom = 9.0
+value = 50.0
+fill_mode = 8
+nine_patch_stretch = true
+texture_under = SubResource("AtlasTexture_4fsrw")
+texture_over = SubResource("AtlasTexture_f57vc")
+texture_progress = SubResource("AtlasTexture_pbatg")
+
+[connection signal="timeout" from="Bubble_Cooldown" to="." method="_on_dash_cooldown_timeout"]
