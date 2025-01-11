@@ -3,11 +3,13 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 var DASH_ENABLED = true
-var CAN_DASH = tru
+var CAN_DASH = true
 var Player = "P1"
 var DASH_TIME = 25
 var talisman_counter = 0
 var talismans = []
+var dmg = 10;
+var poly = CollisionPolygon2D.new()
 
 func _draw():
 	#print(talismans.size())
@@ -63,7 +65,6 @@ func _input(event):
 			talismans[0].queue_free()
 			talismans.remove_at(0)
 			talisman_counter-=1;
-		var poly = CollisionPolygon2D.new()
 		poly.polygon = PackedVector2Array(talismans.map(func(tal):return tal.position))
 		print(poly)
 		
@@ -74,8 +75,8 @@ func _on_dash_cooldown_timeout():
 
 
 func _on_area_2d_body_entered(body):
-	if body.get_Name() = "Enemy":
-		
+	if body.get_Name() == "Enemy":
+		body.dmg_tick(dmg,poly)
 	pass # Replace with function body.
 
 

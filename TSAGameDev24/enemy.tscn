@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3rvanii1nxvi"]
+
+[ext_resource type="Script" path="res://foe.gd" id="1_sfa8e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_my4xf"]
+radius = 17.2627
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7tiua"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_sfa8e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_my4xf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7tiua")
+
+[node name="Enemy" type="Node2D" parent="."]
