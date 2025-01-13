@@ -5,9 +5,9 @@ var counter = 0;
 func _ready():
 	#move_to_front()
 	#print(get_parent())
-	position = get_parent().position
+	global_position = get_parent().global_position
 	#print(position)
-	$AnimatedSprite2D.play("Startup")
+	$AnimatedSprite2D.play("default")
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,8 +15,8 @@ func _process(delta):
 	counter+=delta;
 	$AnimatedSprite2D.position.y = $AnimatedSprite2D.position.y + sin(5*counter) 
 	$AnimatedSprite2D.scale.x = sin(2*counter)
-	global_position = global_position + to_local((delta)*(-global_position +  get_parent().global_position))
-	print(delta)
+	#global_position = global_position + to_local((delta)*(-global_position +  get_parent().global_position))
+	print(position)
 	pass
 
 

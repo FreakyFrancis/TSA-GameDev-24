@@ -5,7 +5,7 @@ var counter = 0;
 func _ready():
 	#move_to_front()
 	#print(get_parent())
-	position = get_parent().get_child(3).position
+	position = get_tree().get_nodes_in_group("Player")[1].position
 	#print(position)
 	$AnimatedSprite2D.play("Startup")
 	pass # Replace with function body.

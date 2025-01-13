@@ -100,7 +100,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_05orp")
 }],
 "loop": true,
-"name": &"new_animation",
+"name": &"Walk",
 "speed": 5.0
 }]
 
@@ -120,12 +120,14 @@ one_shot = true
 position = Vector2(0, -27)
 polygon = PackedVector2Array(0, 27)
 
+[node name="Polygon2D" type="Polygon2D" parent="Area2D/CollisionPolygon2D"]
+color = Color(0.2106, 0.42887, 0.78, 0.698039)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-1, -32)
 sprite_frames = SubResource("SpriteFrames_i878q")
-animation = &"Idle"
-frame_progress = 0.93157
+animation = &"Walk"
 
 [connection signal="timeout" from="Dash_Cooldown" to="." method="_on_dash_cooldown_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

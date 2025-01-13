@@ -9,20 +9,20 @@ var DASH_TIME = 25
 var talisman_counter = 0
 var talismans = []
 var dmg = 10;
-var poly = CollisionPolygon2D.new()
 
 func _draw():
 	#print(talismans.size())
 	# Draw line from player to each talisman
 	if talismans:
 		var tal_pos = to_local(talismans[-1].global_position)
-		draw_line(Vector2.ZERO, tal_pos, Color(0.667, 0.881, 0.898), 10)
+		#draw_line(Vector2.ZERO, tal_pos, Color(0.667, 0.881, 0.898), 10)
 		#print(tal_pos)
 		for i in range(talismans.size()):
 			tal_pos = to_local(talismans[i].global_position)
 			if i > 0:
 				var prev_tal_pos = to_local(talismans[i - 1].global_position)
 				draw_line(prev_tal_pos, tal_pos, Color(0.085, 0.911, 0.94), 10)
+		draw_line(to_local(talismans[-1].global_position),to_local(talismans[0].global_position),Color(0.085, 0.911, 0.94), 10)
 
 func _physics_process(delta):
 	queue_redraw()
@@ -31,15 +31,25 @@ func _physics_process(delta):
 	var xdirection = Input.get_axis(Player + "_left", Player + "_right")
 	if xdirection:
 		velocity.x = xdirection * SPEED
+		if(xdirection<0):
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
+		$AnimatedSprite2D.play("Walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
 	
 	var ydirection = Input.get_axis(Player + "_up", Player + "_down")
 	if ydirection:
 		velocity.y = ydirection * SPEED
+		$AnimatedSprite2D.play("Walk")
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	move_and_slide()
+	
+	if(not (xdirection and ydirection)):
+		$AnimatedSprite2D.play("Idle")
 
 func _input(event):
 	if event.is_action_pressed(Player + "_Action"):
@@ -65,8 +75,9 @@ func _input(event):
 			talismans[0].queue_free()
 			talismans.remove_at(0)
 			talisman_counter-=1;
-		poly.polygon = PackedVector2Array(talismans.map(func(tal):return tal.position))
-		print(poly)
+		$Area2D/CollisionPolygon2D.polygon = PackedVector2Array([global_position])+PackedVector2Array(talismans.map(func(tal):return tal.global_position))
+		$Area2D/CollisionPolygon2D/Polygon2D.polygon  = $Area2D/CollisionPolygon2D.polygon
+		#print(poly)
 		
 func _on_dash_cooldown_timeout():
 	CAN_DASH = true
@@ -75,8 +86,8 @@ func _on_dash_cooldown_timeout():
 
 
 func _on_area_2d_body_entered(body):
-	if body.get_Name() == "Enemy":
-		body.dmg_tick(dmg,poly)
+	if "Enemy" in body.get_groups():
+		body.dmg_tick(dmg,$Area2D/CollisionPolygon2D)
 	pass # Replace with function body.
 
 

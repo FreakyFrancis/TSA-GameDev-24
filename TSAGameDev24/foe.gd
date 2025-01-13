@@ -25,6 +25,8 @@ func dmg_tick(dmg,poly):
 	pass
 	
 func ave(pps):
+	if pps.size()==0:
+		return Vector2(0,0)
 	var x = 0;
 	var y = 0;
 	for vect in pps:
