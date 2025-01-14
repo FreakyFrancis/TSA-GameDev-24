@@ -46,6 +46,7 @@ func _input(event):
 	if event.is_action_pressed(Player+"_Special"):
 		var tal = load("res://mirror.tscn")
 		print("mirror added")
+		$".".add_im
 
 func _on_dash_cooldown_timeout():
 	CAN_DASH = true;

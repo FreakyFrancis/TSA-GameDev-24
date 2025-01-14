@@ -34,5 +34,5 @@ position = Vector2(-116, -32)
 [node name="Tali" parent="." groups=["Player"] instance=ExtResource("2_h516y")]
 position = Vector2(380, 204)
 
-[node name="Enemy" parent="." groups=["Enemy"] instance=ExtResource("5_xo1eq")]
+[node name="Enemy" parent="." instance=ExtResource("5_xo1eq")]
 position = Vector2(578, 368)

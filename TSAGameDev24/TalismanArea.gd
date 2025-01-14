@@ -27,9 +27,10 @@ func update(Talismans):
 
 func _on_area_2d_body_entered(body):
 	print("violated")
-	print(body.get_groups())
+	#print(body.get_groups())
 	if "Enemy" in body.get_groups():
-		body.dmg_tick(dmg,$Area2D/CollisionPolygon2D)
+		print(body)
+		body.dmg_tick(dmg,$".")
 	pass # Replace with function body.
 
 

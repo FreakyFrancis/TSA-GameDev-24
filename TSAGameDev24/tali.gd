@@ -63,7 +63,9 @@ func _input(event):
 		if DASH_ENABLED and CAN_DASH:
 			$Dash_Cooldown.start()
 			CAN_DASH = false
+			$CollisionShape2D.disabled = true;
 			global_position += DASH_TIME*SPEED*velocity.normalized()*0.02
+			$CollisionShape2D.disabled = false;
 			var afterimg = preload("res://dash_afterimage.tscn")
 			var afterimg_instance = afterimg.instantiate()
 			afterimg_instance.global_position = global_position
@@ -86,6 +88,7 @@ func _input(event):
 		#print(poly)
 func updateTalismans():
 	talismans.remove_at(0)
+	talisman_counter -=1;
 	get_tree().get_nodes_in_group("TalismanArea")[0].update(talismans)
 	
 func _on_dash_cooldown_timeout():

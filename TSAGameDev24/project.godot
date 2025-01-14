@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="TSAGameDev24"
-run/main_scene="res://test_level.tscn"
+run/main_scene="res://title_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="viewport"
 
 [global_group]
