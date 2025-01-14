@@ -1,7 +1,7 @@
 extends CharacterBody2D
 var ticking = false
 var dmg_amount = 0
-var dmg_centers = []
+#var dmg_centers = []
 var speed = 250
 
 # Called when the node enters the scene tree for the first time.
@@ -18,12 +18,13 @@ func _physics_process(delta):
 	move_and_slide()
 	if ticking:
 		$TextureProgressBar.value -= dmg_amount*delta
+	#print(str(ticking)+" "+str($TextureProgressBar.value))
 	pass
 
 func dmg_tick(dmg,poly):
 	ticking = true
 	dmg_amount += dmg
-	dmg_centers.append(ave(poly.polygon))
+	#dmg_centers.append(ave(poly.polygon))
 	pass
 	
 func ave(pps):

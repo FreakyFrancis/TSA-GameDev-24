@@ -14,16 +14,22 @@ var talismanMax = 5
 func _draw():
 	#print(talismans.size())
 	# Draw line from player to each talisman
-	if talismans:
-		var tal_pos = to_local(talismans[-1].global_position)
+	#for t in range(talismans.size()-1):
+		#if not is_instance_valid(talismans[t]):
+			#talismans.remove_at(t)
+	#if(talismans.size()<1):
+		#return
+	var talismans_pos = Geometry2D.convex_hull(talismans.map(func(tal):return tal.global_position))
+	if talismans_pos:
+		var tal_pos = to_local(talismans_pos[-1])
 		#draw_line(Vector2.ZERO, tal_pos, Color(0.667, 0.881, 0.898), 10)
 		#print(tal_pos)
-		for i in range(talismans.size()):
-			tal_pos = to_local(talismans[i].global_position)
+		for i in range(talismans_pos.size()):
+			tal_pos = to_local(talismans_pos[i])
 			if i > 0:
-				var prev_tal_pos = to_local(talismans[i - 1].global_position)
+				var prev_tal_pos = to_local(talismans_pos[i - 1])
 				draw_line(prev_tal_pos, tal_pos, Color(0.085, 0.911, 0.94), 10)
-		draw_line(to_local(talismans[-1].global_position),to_local(talismans[0].global_position),Color(0.085, 0.911, 0.94), 10)
+		draw_line(to_local(talismans_pos[-1]),to_local(talismans_pos[0]),Color(0.085, 0.911, 0.94), 10)
 
 func _physics_process(delta):
 	queue_redraw()
@@ -78,6 +84,9 @@ func _input(event):
 			talisman_counter-=1;
 		get_tree().get_nodes_in_group("TalismanArea")[0].update(talismans)
 		#print(poly)
-		
+func updateTalismans():
+	talismans.remove_at(0)
+	get_tree().get_nodes_in_group("TalismanArea")[0].update(talismans)
+	
 func _on_dash_cooldown_timeout():
 	CAN_DASH = true
