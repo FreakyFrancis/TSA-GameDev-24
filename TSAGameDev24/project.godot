@@ -24,6 +24,7 @@ window/stretch/mode="viewport"
 Player=""
 obj=""
 Enemy=""
+TalismanArea=""
 
 [input]
 

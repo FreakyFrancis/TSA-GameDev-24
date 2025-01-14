@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dgoksh1u6y3i1" path="res://health_bar.png" id="3_bda66"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_my4xf"]
-radius = 21.0238
+radius = 9.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_her72"]
 atlas = ExtResource("2_7q6nk")
@@ -98,9 +98,9 @@ shape = SubResource("CircleShape2D_my4xf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -20)
+position = Vector2(1, -20)
 sprite_frames = SubResource("SpriteFrames_7tiua")
-frame_progress = 0.702861
+frame_progress = 0.982728
 
 [node name="Enemy" type="Node2D" parent="."]
 

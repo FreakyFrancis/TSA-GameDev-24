@@ -9,6 +9,7 @@ var DASH_TIME = 25
 var talisman_counter = 0
 var talismans = []
 var dmg = 10;
+var talismanMax = 5
 
 func _draw():
 	#print(talismans.size())
@@ -56,13 +57,13 @@ func _input(event):
 		if DASH_ENABLED and CAN_DASH:
 			$Dash_Cooldown.start()
 			CAN_DASH = false
-			velocity += DASH_TIME*SPEED*velocity.normalized()
+			global_position += DASH_TIME*SPEED*velocity.normalized()*0.02
 			var afterimg = preload("res://dash_afterimage.tscn")
 			var afterimg_instance = afterimg.instantiate()
 			afterimg_instance.global_position = global_position
 			get_parent().add_child(afterimg_instance)
 			print("shadow left")
-			move_and_slide()
+			#move_and_slide()
 	
 	if event.is_action_pressed(Player + "_Special"):
 		var tal_scene = preload("res://talisman.tscn")
@@ -71,25 +72,12 @@ func _input(event):
 		get_parent().add_child(tal_instance)
 		talismans.append(tal_instance)
 		talisman_counter += 1
-		if(talisman_counter>5):
+		if(talisman_counter>talismanMax):
 			talismans[0].queue_free()
 			talismans.remove_at(0)
 			talisman_counter-=1;
-		$Area2D/CollisionPolygon2D.polygon = PackedVector2Array([global_position])+PackedVector2Array(talismans.map(func(tal):return tal.global_position))
-		$Area2D/CollisionPolygon2D/Polygon2D.polygon  = $Area2D/CollisionPolygon2D.polygon
+		get_tree().get_nodes_in_group("TalismanArea")[0].update(talismans)
 		#print(poly)
 		
 func _on_dash_cooldown_timeout():
 	CAN_DASH = true
-
-
-
-
-func _on_area_2d_body_entered(body):
-	if "Enemy" in body.get_groups():
-		body.dmg_tick(dmg,$Area2D/CollisionPolygon2D)
-	pass # Replace with function body.
-
-
-func _on_area_2d_body_exited(body):
-	pass # Replace with function body.

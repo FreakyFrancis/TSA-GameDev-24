@@ -1,21 +1,23 @@
 extends CharacterBody2D
-var hp
 var ticking = false
 var dmg_amount = 0
 var dmg_centers = []
-var speed = 300
+var speed = 250
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	$TextureProgressBar.value = $TextureProgressBar.max_value
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	velocity = position - ave(dmg_centers)
+	var closer = get_tree().get_nodes_in_group("Player")[0] if (-global_position+get_tree().get_nodes_in_group("Player")[0].global_position).length() < (-global_position+get_tree().get_nodes_in_group("Player")[1].global_position).length() else get_tree().get_nodes_in_group("Player")[1] 
+	velocity = -position + closer.global_position
 	velocity = velocity.normalized() * speed
 	move_and_slide()
+	if ticking:
+		$TextureProgressBar.value -= dmg_amount*delta
 	pass
 
 func dmg_tick(dmg,poly):

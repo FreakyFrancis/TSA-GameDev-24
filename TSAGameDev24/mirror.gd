@@ -16,7 +16,7 @@ func _process(delta):
 	$AnimatedSprite2D.position.y = $AnimatedSprite2D.position.y + sin(5*counter) 
 	$AnimatedSprite2D.scale.x = sin(2*counter)
 	#global_position = global_position + to_local((delta)*(-global_position +  get_parent().global_position))
-	print(position)
+	#print(position)
 	pass
 
 

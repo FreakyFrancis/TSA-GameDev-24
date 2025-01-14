@@ -39,9 +39,9 @@ func _input(event):
 		print("dash test")
 		if DASH_ENABLED and CAN_DASH:
 			print("dashed")
-			$Dash_Cooldown.start();
-			CAN_DASH = false
-			velocity = velocity*DASH_TIME;
+			#$Dash_Cooldown.start();
+			#CAN_DASH = false
+			#velocity = velocity*DASH_TIME;
 			move_and_slide()
 	if event.is_action_pressed(Player+"_Special"):
 		var tal = load("res://mirror.tscn")
