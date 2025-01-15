@@ -90,8 +90,10 @@ one_shot = true
 texture_filter = 1
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_nshlv")
+flip_h = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+visible = false
 texture_filter = 1
 offset_left = -54.0
 offset_top = -85.0

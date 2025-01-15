@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://dp4ynhumpvwr4"]
+[gd_scene load_steps=8 format=4 uid="uid://dp4ynhumpvwr4"]
 
 [ext_resource type="Texture2D" uid="uid://jk7mntgtxsx3" path="res://New Piskel (1).png" id="1_4jiiv"]
 [ext_resource type="Script" path="res://star_parallax_layer.gd" id="1_pajuu"]
+[ext_resource type="Script" path="res://title_screen.gd" id="1_skrep"]
 [ext_resource type="Script" path="res://parallax_layer_2.gd" id="1_y5b56"]
 [ext_resource type="Texture2D" uid="uid://x4t3rshfeh3x" path="res://New Piskel.png" id="2_3d1fg"]
 
@@ -36,11 +37,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_skrep")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-texture_filter = 1
+texture_filter = 3
 position = Vector2(800, 400)
 script = ExtResource("1_y5b56")
 
@@ -186,3 +188,6 @@ layout_mode = 2
 
 [node name="TextureButton2" type="TextureButton" parent="HBoxContainer/VBoxContainer3"]
 layout_mode = 2
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer3/TextureButton2" to="." method="_on_texture_button_2_pressed"]

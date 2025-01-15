@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=4 uid="uid://bvimfgd4q6xvn"]
+[gd_scene load_steps=10 format=4 uid="uid://bvimfgd4q6xvn"]
 
 [ext_resource type="Texture2D" uid="uid://brqb1o6rueblm" path="res://New Piskel-2.png.png" id="1_dg46a"]
+[ext_resource type="Script" path="res://test_level.gd" id="1_lgsg0"]
 [ext_resource type="PackedScene" uid="uid://bsyk26131yma" path="res://tali.tscn" id="2_h516y"]
 [ext_resource type="PackedScene" uid="uid://baldhw7mmjrpd" path="res://Mirr.tscn" id="2_hp6p1"]
 [ext_resource type="PackedScene" uid="uid://dcew24g2tu4gs" path="res://mirror.tscn" id="3_10v1w"]
@@ -17,6 +18,7 @@ tile_size = Vector2i(24, 24)
 sources/2 = SubResource("TileSetAtlasSource_3nfm4")
 
 [node name="Test Level" type="Node2D"]
+script = ExtResource("1_lgsg0")
 
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -36,3 +38,8 @@ position = Vector2(380, 204)
 
 [node name="Enemy" parent="." instance=ExtResource("5_xo1eq")]
 position = Vector2(578, 368)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

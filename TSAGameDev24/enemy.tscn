@@ -1,11 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://c3rvanii1nxvi"]
+[gd_scene load_steps=19 format=3 uid="uid://c3rvanii1nxvi"]
 
 [ext_resource type="Script" path="res://foe.gd" id="1_sfa8e"]
 [ext_resource type="Texture2D" uid="uid://dmws313s5i34g" path="res://robot_walk.png" id="2_7q6nk"]
 [ext_resource type="Texture2D" uid="uid://dgoksh1u6y3i1" path="res://health_bar.png" id="3_bda66"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_my4xf"]
-radius = 9.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_her72"]
 atlas = ExtResource("2_7q6nk")
@@ -90,10 +89,15 @@ region = Rect2(128, 0, 64, 8)
 atlas = ExtResource("3_bda66")
 region = Rect2(64, 0, 64, 8)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtshm"]
+radius = 17.0
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Enemy"]]
+position = Vector2(-1, 0)
 script = ExtResource("1_sfa8e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
 shape = SubResource("CircleShape2D_my4xf")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -115,3 +119,9 @@ value = 100.0
 texture_under = SubResource("AtlasTexture_8s8qj")
 texture_over = SubResource("AtlasTexture_v56cm")
 texture_progress = SubResource("AtlasTexture_vk2t3")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_qtshm")
